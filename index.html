@@ -1,0 +1,475 @@
+html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MJ Events | Premium Luxury Event Company</title>
+
+<style>
+/* ===== GOOGLE FONTS ===== */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&family=Cairo:wght@400;700;900&display=swap');
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body{
+  background: #000;
+  color: white;
+  font-family: 'Montserrat', 'Cairo', sans-serif;
+  overflow-x: hidden;
+}
+
+/* ===== GLOBAL BACKGROUND SYSTEM (Cinematic Alexandria Night & Concert) ===== */
+.page-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: -2;
+  /* صورة حفلة ضخمة مع دمج إضاءات تحاكي كورنيش الإسكندرية ليلًا */
+  background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(5, 5, 20, 0.85)), 
+              url('https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+/* طبقة إضاءة مسرحية متحركة لشعور الحفلات الحية */
+.stage-lights {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: -1;
+  background: radial-gradient(circle at 20% 30%, rgba(255, 0, 50, 0.15) 0%, transparent 50%),
+              radial-gradient(circle at 80% 70%, rgba(0, 100, 255, 0.15) 0%, transparent 50%);
+  opacity: 0.8;
+  pointer-events: none;
+  animation: ambientLights 10s infinite alternate ease-in-out;
+}
+
+@keyframes ambientLights {
+  0% { transform: scale(1) rotate(0deg); opacity: 0.6; }
+  100% { transform: scale(1.2) rotate(5deg); opacity: 0.9; }
+}
+
+/* ===== LOADER & CINEMATIC TRANSITION ===== */
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: #030303;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: transform 1.2s cubic-bezier(0.85, 0, 0.15, 1);
+  transform: translateY(0);
+}
+
+.loader.fade-away {
+  transform: translateY(-100%);
+}
+
+.loader-content {
+  text-align: center;
+  position: relative;
+}
+
+.loader h1 {
+  font-size: clamp(35px, 6vw, 65px);
+  color: #ffffff;
+  letter-spacing: 10px;
+  font-weight: 900;
+  text-transform: uppercase;
+  animation: cinemaGlow 2s infinite alternate ease-in-out;
+}
+
+.cinema-line {
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #ffffff, transparent);
+  margin: 15px auto 0 auto;
+  animation: expandLine 1.5s cubic-bezier(0.1, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes cinemaGlow {
+  0% {
+    opacity: 0.5;
+    transform: scale(0.98);
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.02);
+    filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.6));
+  }
+}
+
+@keyframes expandLine {
+  0% { width: 0; opacity: 0; }
+  100% { width: 150px; opacity: 1; }
+}
+
+/* ===== HEADER ===== */
+header{
+  position:fixed;
+  top:0;
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items: center;
+  padding: 20px 5%;
+  z-index:100;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.logo{
+  font-size: clamp(18px, 3vw, 24px);
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+/* ===== LANGUAGE BUTTON ===== */
+.lang{
+  display: flex;
+  gap: 8px;
+}
+
+.lang button{
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: white;
+  padding: 6px 14px;
+  cursor: pointer;
+  border-radius: 30px;
+  font-weight: bold;
+  font-size: 12px;
+  transition: all 0.3s ease;
+}
+
+.lang button:hover {
+  background: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
+}
+
+/* ===== HERO ===== */
+.hero{
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding: 0 20px;
+  position: relative;
+}
+
+.hero-content {
+  max-width: 1000px;
+  animation: zoomOutScene 2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.hero h1{
+  font-size: clamp(32px, 7vw, 75px);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: 2px;
+  color: #ffffff;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.hero p{
+  margin-top:15px;
+  opacity:0.9;
+  font-size: clamp(14px, 2vw, 20px);
+  letter-spacing: 2px;
+  font-weight: 300;
+  text-transform: uppercase;
+  color: #e0e0e0;
+}
+
+@keyframes zoomOutScene {
+  from { opacity: 0; transform: scale(1.1); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.btn{
+  margin-top:40px;
+  padding: 16px 45px;
+  background: #ff002b;
+  color: white;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 15px;
+  transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: 0 5px 20px rgba(255, 0, 43, 0.3);
+}
+
+.btn:hover{
+  transform: translateY(-4px) scale(1.03);
+  background: #ff1e43;
+  box-shadow: 0 15px 35px rgba(255, 0, 43, 0.6);
+}
+
+/* ===== SECTIONS CONTAINER (SHOWN TRANSPARENTLY OVER THE BG) ===== */
+section{
+  padding: 140px 20px;
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 1.2s ease;
+}
+
+section.show{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+section h2 {
+  font-size: clamp(28px, 5vw, 45px);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 30px;
+}
+
+/* ===== ABOUT ===== */
+.about p {
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: clamp(16px, 2vw, 22px);
+  line-height: 1.8;
+  color: #f0f0f0;
+  font-weight: 300;
+}
+
+/* ===== CONTACT & GLASSMORPHISM CARD ===== */
+.card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 50px 40px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  display: block;
+  max-width: 550px;
+  margin: 40px auto 0 auto;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+}
+
+.card p {
+  margin-bottom: 20px;
+  font-size: clamp(16px, 2vw, 22px);
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+.social-links {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.social-links a{
+  color: #ffffff;
+  display: inline-block;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+  color: #000000;
+  background: #ffffff;
+  transform: translateY(-3px);
+}
+
+/* ===== FOOTER ===== */
+footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 30px 20px;
+  text-align: center;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 1px;
+}
+
+/* ===== ARABIC ALIGNMENT UTILITY ===== */
+.rtl {
+  direction: rtl;
+  font-family: 'Cairo', sans-serif;
+}
+</style>
+</head>
+
+<body>
+
+<div class="page-bg"></div>
+<div class="stage-lights"></div>
+
+<div class="loader" id="page-loader">
+  <div class="loader-content">
+    <h1>MJ Events</h1>
+    <div class="cinema-line"></div>
+  </div>
+</div>
+
+<header>
+  <div class="logo">MJ EVENTS</div>
+  
+  <div class="lang">
+    <button onclick="setLang('en')">EN</button>
+    <button onclick="setLang('ar')">AR</button>
+  </div>
+</header>
+
+<section class="hero show"> 
+  <div class="hero-content" id="hero-content">
+    <h1 data-en="WE TURN MOMENTS INTO MEMORIES"
+        data-ar="بنحول اللحظات لذكريات">
+    WE TURN MOMENTS INTO MEMORIES</h1>
+
+    <p data-en="Graduations • Weddings • Fun Days • Night Parties"
+       data-ar="حفلات تخرج • أفراح • أيام ممتعة • حفلات ليلية">
+    Graduations • Weddings • Fun Days • Night Parties</p>
+
+    <a href="#contact" class="btn internal-link"
+       data-en="Contact Us"
+       data-ar="تواصل معنا">
+       Contact Us
+    </a>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <h2 data-en="About MJ Events" data-ar="عن MJ Events">About MJ Events</h2>
+  <p data-en="We create premium event experiences with cinematic vibes and unforgettable memories."
+     data-ar="نحن نصنع تجارب حفلات فاخرة بأسلوب سينمائي وذكريات لا تنسى.">
+  We create premium event experiences with cinematic vibes and unforgettable memories.</p>
+</section>
+
+<section class="contact" id="contact">
+  <h2 data-en="Contact Us" data-ar="تواصل معنا">Contact Us</h2>
+
+  <div class="card">
+    <p>📞 01280097256</p>
+    <p>📧 mjevents20@gmail.com</p>
+
+    <div class="social-links">
+      <a href="https://www.instagram.com/mjeventsofficial" target="_blank">Instagram</a>
+      <a href="https://www.facebook.com/share/14f3raHRbeZ/" target="_blank">Facebook</a>
+      <a href="https://www.tiktok.com/@mjevents1" target="_blank">TikTok</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2026 MJ EVENTS. All Rights Reserved. Crafted with Luxury Experience.</p>
+</footer>
+
+<script>
+// ===== LANGUAGE SWITCHER WITH RTL SUPPORT =====
+function setLang(lang){
+  const heroContent = document.getElementById('hero-content');
+  const aboutSection = document.getElementById('about');
+  const contactSection = document.getElementById('contact');
+
+  // تحديث النصوص بناءً على لغة الداتا المتوفرة
+  document.querySelectorAll("[data-en]").forEach(el=>{
+    el.innerText = el.getAttribute("data-"+lang);
+  });
+
+  // إضافة أو حذف الـ RTL لتنسيق الخطوط العربي باتجاهها الصحيح
+  if(lang === 'ar') {
+    heroContent.classList.add('rtl');
+    aboutSection.classList.add('rtl');
+    contactSection.classList.add('rtl');
+  } else {
+    heroContent.classList.remove('rtl');
+    aboutSection.classList.remove('rtl');
+    contactSection.classList.remove('rtl');
+  }
+}
+
+// ===== CINEMATIC LOADER TRIGGER =====
+window.addEventListener("DOMContentLoaded", () => {
+  const loader = document.getElementById("page-loader");
+  setTimeout(() => {
+    loader.classList.add("fade-away");
+  }, 1500);
+});
+
+// ===== SMOOTH INTERNAL TRANSITION =====
+document.querySelectorAll('.internal-link').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const targetId = this.getAttribute('href');
+    const targetSection = document.querySelector(targetId);
+    
+    if (targetSection) {
+      targetSection.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  });
+});
+
+// ===== IMPROVED SCROLL ANIMATION FOR SECTIONS =====
+const sections = document.querySelectorAll("section:not(.hero)");
+
+const triggerAnimation = () => {
+  sections.forEach(sec=>{
+    const top = window.innerHeight;
+    const pos = sec.getBoundingClientRect().top;
+    // تفعيل الحركة عند ظهور 15% من السيكشن في الشاشة
+    if(pos < top - 100){
+      sec.classList.add("show");
+    }
+  });
+};
+
+window.addEventListener("scroll", triggerAnimation);
+window.addEventListener("load", triggerAnimation); // لتشغيل الأنيميشن للعناصر الظاهرة في البداية
+</script>
+
+</body>
+</html>
